@@ -4,7 +4,7 @@
 
 Þetta verkefni er einstaklingsverkefni í áfanganum Vefforritun 2 (2025). Markmiðið er að búa til stafrænt safnspil (CCG) innblásið af Hearthstone, Gwent og Magic: The Gathering. Leikurinn verður vefforrit, sem nýtir nútímalegar vefþróunartækni bæði fyrir bakenda og framenda.
 
-Leikurinn mun innihalda persónur, atburði og galdra sem spilanleg spil, með stefnumótandi spilun sem hvetur til taktískra ákvarðana.
+Leikurinn mun innihalda persónur, atburði og galdra sem spilanleg spil, úthugsaðri spilun sem hvetur til taktískra ákvarðana.
 
 ## **Útfærsla**
 
@@ -21,8 +21,8 @@ Til að uppfylla skilyrði áfangans mun verkefnið innihalda:
 
 * **Bakendi:** Node.js með Express  
 * **Gagnagrunnur:** PostgreSQL  
-* **Framendi:** React  
-* **Hýsing:** NextJS  
+* **Framendi:** NextJs  
+* **Hýsing:** Vercel  
 * **Útgáfustjórnun & CI/CD:** GitHub Actions fyrir prófanir og útgáfu
 
 ## **Tímalína**
