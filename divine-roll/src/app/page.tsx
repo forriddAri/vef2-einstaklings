@@ -9,7 +9,7 @@ export default function Home() {
   const [message, setMessage] = useState("");
 
   async function handleAuth() {
-    const endpoint = isSignUp ? "/api/auth/signup" : "/api/auth/login";
+    const endpoint = isSignUp ? "/api/signup" : "/api/login";
     const res = await fetch(endpoint, {
       method: "POST",
       headers: {"Content-Type":"application/json"},

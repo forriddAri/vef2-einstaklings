@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   try {
+    console.log("signup request")
     const { email, password } = await req.json();
     console.log("📢 Signup Request:", email);
 
