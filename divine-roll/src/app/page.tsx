@@ -1,30 +1,30 @@
-"use client"; //til að höndla events í next.js
-
+"use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUP] = useState(false);
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   async function handleAuth() {
     const endpoint = isSignUp ? "/api/signup" : "/api/login";
     const res = await fetch(endpoint, {
       method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({email,password}),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await res.json();
     setMessage(data.error || data.message || "Logged in!");
 
-    if (!data.error && !isSignUp){
-      localStorage.setItem("token", data.token);
+    if (!data.error && !isSignUp) {
+      router.push("/dashboard"); // ✅ Redirect to the dashboard
     }
-    
   }
-  
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-3xl font-bold mb-4">Welcome to Divine Roll</h1>

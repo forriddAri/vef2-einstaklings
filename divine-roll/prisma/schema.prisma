@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model cards {
+model Card {
   id     Int       @id @default(autoincrement())
   name   String    @db.VarChar(255)
   type   card_type
@@ -23,7 +23,8 @@ enum card_type {
 }
 
 model User {
-  id Int @default(autoincrement())
+  id Int @id @default(autoincrement())
   email String @unique
   password String
 }
+
