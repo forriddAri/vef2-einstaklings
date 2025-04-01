@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function PacksPage() {
-  const [cards, setCards] = useState([]);
+  const [ card, setCards] = useState([]); // setja card, inni [] 
   const router = useRouter();
 
   async function openPack() {
     const res = await fetch("/api/packs");
     const data = await res.json();
     setCards(data.cards || []);
+    console.log(card)
   }
 
   return (
@@ -24,7 +25,7 @@ export default function PacksPage() {
       </button>
 
       {/* <div className="mt-6 grid grid-cols-5 gap-4">
-        {cards.map((card, index) => (
+        {card.map((card, index) => (
           <div key={index} className="bg-white p-4 shadow rounded text-center">
             <p className="font-semibold">{card.name}</p>
             {card.imageUrl && <img src={card.imageUrl} alt={card.name} className="w-20 mx-auto" />}

@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const cards = await prisma.cards.findMany();
+    const cards = await prisma.card.findMany();
     console.log("✅ Fetched cards:", cards); // Debugging log
 
     return NextResponse.json(cards); 
