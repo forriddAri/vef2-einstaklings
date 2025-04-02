@@ -3,15 +3,16 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    // Get 5 random cards from the database
-    const cards = await prisma.card.findMany({
-      take: 5,
-      orderBy: { id: "asc" }, // Consider using "random" if you want true randomness
-    });
-
+    const cards = await prisma.$queryRaw`
+      SELECT * FROM "Card" ORDER BY RANDOM() LIMIT 5;
+    `;
+    console.log("✅ Fetched random cards:", cards);
     return NextResponse.json({ cards });
   } catch (error) {
-    console.error("❌ Error opening pack:", error);
-    return NextResponse.json({ error: "Failed to open pack" }, { status: 500 });
+    console.error("❌ Error fetching cards:", error);
+    return NextResponse.json({ error: "Failed to fetch cards" }, { status: 500 });
   }
 }
+
+
+

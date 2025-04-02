@@ -9,7 +9,11 @@ export async function POST(req: Request) {
     console.log("📢 Login Request:", email);
 
     // Find user
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { id: true, email: true, password: true } 
+    });
+
     if (!user) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
     }
@@ -20,6 +24,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
     }
 
+    if (!user) {
+      console.error("❌ User not found or invalid credentials");
+      return NextResponse.json({ error: "Invalid login" }, { status: 401 });
+    }
+    
+    console.log("Creating token with user ID:", user.id);
     // Generate JWT token
     const token = jwt.sign({ userId: user.id }, "secret", { expiresIn: "1h" });
 
