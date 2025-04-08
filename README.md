@@ -47,17 +47,34 @@ Til að uppfylla skilyrði áfangans mun verkefnið innihalda:
 | Prófanir & villuleit | 20% |
 | Hýsing & skjölun | 20% |
 
-## **Áskoranir og atriði til íhugunar**
+## **Greining á verkefni**
 
-* Tryggja jafnvægi í leikreglum.  
-* Stjórnun á rauntímaviðmótum ef spilamennska verður fjölspilunar.  
-* Hámarka frammistöðu gagnagrunns og fyrirspurnir.  
-* Hönnun á notendavænni spilareynslu með flóknum kvikum.  
-* Passa að fókusera á mikilvægu hlutina og missa sig ekki í smáatriðum.
+Verkefnið hófst með hugmynd að stafrænu safnspili sem blandaði saman þáttum úr vel þekktum leikjum eins og Hearthstone og Magic: The Gathering. Í greiningarfasa var markmiðið að meta hvaða tæknilausnir væru viðeigandi og hversu mikið mætti útfæra innan verkefnatímans.
 
-## **Niðurlag**
+Verkefnið var því brotið niður í skýra verkþætti: 
+- Skilgreining leikreglna og spilavélar
+- Gagnagrunnshönnun og bakenda uppsetning með PostgreSQL og Express
+- Framendaþróun með Next.js og React
+- Tenging milli kerfislaga
+- Prófanir og villuleit
 
-Þetta verkefni sameinar leikjaþróun, vefþróun og gagnvirkt UI hönnun í eina heild. Lokaafurðin verður stafrænt safnspil, sett upp á netinu með bakenda, gagnagrunni og framenda.
+Tímalína var sett fram til að tryggja jafna framvindu og forgangsröðun. Verkefnið var hugsað með stigvaxandi þróun í huga: fyrst að tryggja grunnvirkni (eins og skráningu spila og innskráningu), og bæta síðan við dýnamískari virkni og flóknari UI eftir því sem verkefnið þróaðist.
 
-Næstu skref fela í sér útfærslu á spilakerfi og spilaborðsviðmóti, tryggja hnökralaus samskipti á milli framenda og bakenda, og innleiða flóknari CSS kvikun í UI.
+Markmið greiningarinnar var að tryggja að verkefnið væri raunhæft innan þess ramma sem áfanginn setur, og að hægt væri að prófa og afhenda virka útgáfu að lokum.
+
+## **Hvað gekk vel**
+
+- Tengingar milli bakenda og framenda gengu vel og API köll virkuðu snemma.
+- Hýsing á Vercel reyndist einföld og fljótleg.
+- Var fljótur að byrja á verkefninu
+- Kröfurnar sem ég ákvað að uppfylla voru í einfaldari kanntinum
+
+## **Hvað gekk illa**
+
+- Upphafleg greining fékk ekki næga eftirfylgni, sem leiddi til nokkurrar óvissu á miðju verkefnistímabili.
+- Var ekki með góða sjón á því hvernig "fullklárað" verkefni myndi lýta út
+- Schema fyrir spil þurfti að endurhanna nokkrum sinnum.
+- Ekki beint passion project, veit ekki hvort ég myndi vilja halda áfram með akkúrat þetta verkefni.
+
+
 
