@@ -37,12 +37,12 @@ const cards = [
     for (const card of cards) {
       await prisma.card.create({ data: card });
     }
-    console.log("✅ Seeded cards!");
+    console.log("Seeded cards!");
   }
   
   main()
     .catch((e) => {
-      console.error("❌ Seed error:", e);
+      console.error("Seed error:", e);
       process.exit(1);
     })
     .finally(() => prisma.$disconnect());
