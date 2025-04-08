@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect} from "react";
 import type { Card } from "@prisma/client";
 
 export default function PacksPage() {
@@ -10,6 +11,21 @@ export default function PacksPage() {
   const [debugLog, setDebugLog] = useState<Card[] | string | null>(null);
   
   const router = useRouter();
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("ownedCards");
+      if (saved) {
+        setOwnedCards(JSON.parse(saved));
+      }
+    } catch (e) {
+      console.error("Could not parse ownedCards from localStorage:", e);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("ownedCards", JSON.stringify(ownedCards));
+  }, [ownedCards]);
   
   // 1. Open Pack (simulate giving 5 random cards)
   async function openPack() {
@@ -34,8 +50,15 @@ export default function PacksPage() {
   
   // 3. Show Owned Cards (from local state)
   async function showOwnedCards() {
-    setDebugLog(ownedCards);
-    console.log("Owned Cards:", ownedCards);
+    const raw = localStorage.getItem("ownedCards");
+    try {
+      const parsed = raw ? JSON.parse(raw) : [];
+      setDebugLog(parsed);
+      console.log("Owned Cards:", parsed);
+    } catch (e) {
+      console.error("Failed to parse ownedCards from localStorage", e);
+      setDebugLog("Error parsing ownedCards");
+    }
   }
   
   // 4. Reset Owned Cards (clear the local state)
@@ -47,20 +70,20 @@ export default function PacksPage() {
   
   return (
     <div className="p-4 space-y-4">
-      <h1 className="text-xl font-bold mb-2">🎮 Packs Debug Panel</h1>
+      <h1 className="text-xl font-bold mb-2"> Packs Debug Panel</h1>
   
       <div className="flex flex-col gap-2">
         <button onClick={openPack} className="bg-green-600 text-white px-4 py-2 rounded">
-          🎁 Open Pack (Give 5 Random Cards)
+         Open Pack (Give 5 Random Cards)
         </button>
         <button onClick={getAllCards} className="bg-blue-500 text-white px-4 py-2 rounded">
-          📚 Get All Cards (from DB)
+           Get All Cards (from DB)
         </button>
         <button onClick={showOwnedCards} className="bg-yellow-400 text-black px-4 py-2 rounded">
-          👤 Show Owned Cards
+           Show Owned Cards
         </button>
         <button onClick={resetOwnedCards} className="bg-red-500 text-white px-4 py-2 rounded">
-          🗑️ Reset Owned Cards
+           Reset Owned Cards
         </button>
       </div>
   

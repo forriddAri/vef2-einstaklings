@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import "../globals.css";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -8,8 +9,10 @@ export default function Home() {
   const [isSignUp, setIsSignUP] = useState(false);
   const [message, setMessage] = useState("");
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleAuth() {
+    setIsLoading(true);
     const endpoint = isSignUp ? "/api/signup" : "/api/login";
     const res = await fetch(endpoint, {
       method: "POST",
@@ -19,9 +22,10 @@ export default function Home() {
 
     const data = await res.json();
     setMessage(data.error || data.message || "Logged in!");
+    setIsLoading(false);
 
     if (!data.error && !isSignUp) {
-      router.push("/dashboard"); // ✅ Redirect to the dashboard
+      router.push("/dashboard"); // Redirect to the dashboard
     }
   }
 
@@ -51,15 +55,18 @@ export default function Home() {
         />
 
         <button
+          type="button"
           onClick={handleAuth}
+          disabled={isLoading}
           className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
         >
-          {isSignUp ? "Sign Up" : "Log In"}
+           {isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Log In"}
         </button>
 
         <p className="text-sm mt-4">
           {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
           <button
+            type="button"
             className="text-blue-600 underline"
             onClick={() => setIsSignUP(!isSignUp)}
           >

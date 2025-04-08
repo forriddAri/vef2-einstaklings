@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
-    console.log("📢 Login Request:", email);
+    console.log("Login Request:", email);
 
     // Find user
     const user = await prisma.user.findUnique({
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     }
 
     if (!user) {
-      console.error("❌ User not found or invalid credentials");
+      console.error(" User not found or invalid credentials");
       return NextResponse.json({ error: "Invalid login" }, { status: 401 });
     }
     
@@ -43,10 +43,10 @@ export async function POST(req: Request) {
       path: "/",
     });
 
-    console.log("✅ Login successful");
+    console.log(" Login successful");
     return NextResponse.json({ token });
   } catch (error) {
-    console.error("❌ Error logging in:", error);
+    console.error(" Error logging in:", error);
     return NextResponse.json({ error: "Failed to login" }, { status: 500 });
   }
 }
