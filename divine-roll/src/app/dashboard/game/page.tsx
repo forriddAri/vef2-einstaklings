@@ -5,12 +5,16 @@ import { useRouter } from "next/navigation";
 import Card from "../../../components/Card"; 
 
 
+
 export default function GamePage() {
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [hand, setHand] = useState<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [board, setBoard] = useState<any[]>([]);
   const router = useRouter();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [ownedCards, setOwnedCards] = useState<any[]>([]);
 
   useEffect(() => {
